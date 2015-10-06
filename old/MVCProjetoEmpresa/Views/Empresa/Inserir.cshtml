@@ -1,0 +1,22 @@
+﻿@model MVCProjetoEmpresa.Models.Empresa
+@{
+    ViewBag.Title = "Inserir";
+}
+
+<h2>Inserir</h2>
+@using (Ajax.BeginForm(new AjaxOptions
+                          {
+                              LoadingElementId = "progress",
+                              OnSuccess = "OnSucessInserir"
+                          }))
+{
+    @Html.LabelFor(e => e.Nome)
+    @Html.EditorFor(e => e.Nome)
+    @Html.ValidationMessageFor(e => e.Nome)   
+    <br/>
+    @Html.LabelFor(e => e.dtFundacao)
+    @Html.EditorFor(e => e.dtFundacao)
+    @Html.ValidationMessageFor(e => e.dtFundacao)    
+    <br />
+    <input type="submit" value="Inserir" />
+}

@@ -1,0 +1,33 @@
+﻿@model IList<MVCProjetoEmpresa.Models.Empresa>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Empresas</h2>
+
+<table>
+    <tr>
+        <th>Ações
+        </th>
+        <th>Nome da Empresa
+        </th>
+        <th>Data de Fundação
+        </th>
+    </tr>
+    @foreach (var empresa in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink("Inserir", "Inserir") | 
+                @Html.ActionLink("Alterar", "Alterar") |
+                @Ajax.ActionLink("Excluir", "Excluir", new { id = empresa.Id }, new AjaxOptions
+                                                                                 {
+                                                                                     HttpMethod = "POST",
+                                                                                     OnBegin = "confirmarExclusao",
+                                                                                     OnSuccess = "sucessoExclusao"
+                                                                                 })
+            </td>
+            <td>@empresa.Nome</td>
+            <td>@empresa.dtFundacao</td>
+        </tr>
+    }
+</table>
